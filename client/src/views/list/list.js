@@ -1,32 +1,26 @@
 app.controller('indexCtl', ['$scope', '$http', function($scope, $http) {
 
     $scope.delete = function(index){
+
+        console.log(index);
         
-        $http({
-            mthod: 'DELETE',
-            url: `http://localhost:8000/to-dos/${index}`
-            }).then(function(result){
-    
-                
-    
-            }), function(data, status){
-                console.log(data);
-            };
+        $http.delete('http://localhost:8000/api/to-dos/'+index)
+            .then((result)=>{
+
+                window.location.reload();
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+
     };
-    
-    $scope.description = 'Olá';
-    
-    $http({
-        mthod: 'GET',
-        url: 'http://localhost:8000/to-dos/'
-        }).then(function(result){
-
-            $scope.todoItems = result.data.data;
-
-            console.log(result.data);
-
-        }), function(data, status){
-            console.log(data);
-        };
+        
+    $http.get('http://localhost:8000/api/to-dos/')
+        .then((response)=> {
+            $scope.todoItems = response.data.data;
+        })
+        .catch((error) =>{
+            console.log(error);
+        });
 
 }]);

@@ -18,9 +18,9 @@
                     a.form-control-static(editable-checkbox='todoItem.complete') {{ todoItem.complete && "Completed" || "Not complete" }}
         .col-xs-6
             .form-group
-                label.control-label.col-sm-4(for='dueBy') Due by
+                label.control-label.col-sm-4(for='due_by') Due by
                 .col-sm-8
-                    a.form-control-static(href='#' editable-date='todoItem.dueBy') {{ ( todoItem.dueBy | date:'dd-MMM-yyyy' ) || 'no date' }}
+                    a.form-control-static(href='#' editable-date='todoItem.due_by') {{ ( todoItem.due_by | date:'dd-MMM-yyyy' ) || 'no date' }}
             .form-group
                 label.control-label.col-sm-4(for='cost') Cost
                 .col-sm-8
@@ -30,3 +30,7 @@
                 .col-sm-8
                     a.form-control-static(editable-textarea='todoItem.notes' e-rows='7' e-cols='30')
                         pre {{ todoItem.notes }}              
+    .row 
+        .col-xs-7.col-xs-offset-5
+            button.btn.btn-info(ng-click='update(todoItem.id)')
+                span.label Save changes

@@ -30,7 +30,10 @@ class ToDoController extends Controller
         $data = $request->all();
         $todo = $this->todo->create($data);
 
-        return response()->json($todo);
+        return response()->json([
+            'msg' => 'ToDo created successfully!',
+            'data' => $todo
+        ]);
     }
 
     public function show($id)
@@ -47,7 +50,10 @@ class ToDoController extends Controller
         $todo = $this->todo->findOrFail($id);
         $todo->update($data);
 
-        return response()->json($todo);
+        return response()->json([
+            'msg' => 'All changes has been saved!',
+            'data' => $todo
+        ]);
     }
 
     public function destroy($id)

@@ -9,7 +9,7 @@ class ToDo extends Model
     protected $table = 'todos';
 
     protected $fillable = [
-        'category', 'is_complete', 'name',
+        'category', 'complete', 'name',
         'due_by', 'cost', 'notes'
     ];
 }

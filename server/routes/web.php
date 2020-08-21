@@ -15,11 +15,15 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'to-dos'], function() use ($router)
+$router->group(['prefix' => 'api'], function() use ($router)
 {
-    $router->get('/', 'ToDoController@index');
-    $router->get('/{id}', 'ToDoController@show');
-    $router->post('/', 'ToDoController@store');
-    $router->put('/{id}', 'ToDoController@update');
-    $router->delete('/{id}', 'ToDoController@destroy');
+    $router->group(['prefix' => 'to-dos'], function() use ($router)
+    {
+        $router->get('/', 'ToDoController@index');
+        $router->get('/{id}', 'ToDoController@show');
+        $router->post('/', 'ToDoController@store');
+        $router->put('/{id}', 'ToDoController@update');
+        $router->delete('/{id}', 'ToDoController@destroy');
+    });
 });
+
